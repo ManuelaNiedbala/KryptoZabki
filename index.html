@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KryptoŻabki Plan ZUT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="logo-zut.svg" alt="Logo ZUT">
+        </div>
+        <h1>Plan ZUT 2025</h1>
+        <div id="controls">
+            <button>A</button>
+            <button>A+</button>
+            <button>A++</button>
+        </div>
+    </header>
+    <main>
+        <aside>
+            <form>
+                <label for="wykladowca">Wykładowca</label>
+                <input type="text" id="wykladowca" name="wykladowca" placeholder="Podaj nazwisko">
+
+                <label for="numer_albumu">Numer albumu</label>
+                <input type="text" id="numer_albumu" name="numer_albumu" placeholder="Podaj numer albumu">
+
+                <label for="przedmiot">Przedmiot</label>
+                <input type="text" id="przedmiot" name="przedmiot" placeholder="Podaj przedmiot">
+
+                <label for="grupa">Grupa</label>
+                <input type="text" id="grupa" name="grupa" placeholder="Podaj grupę">
+
+                <label for="wydzial">Wydział</label>
+                <input type="text" id="wydzial" name="wydzial" placeholder="Podaj wydział">
+
+                <label for="sala">Sala</label>
+                <input type="text" id="sala" name="sala" placeholder="Podaj salę">
+
+                <label for="forma_zajec">Forma zajęć</label>
+                <div class="dropdown" role="group" aria-labelledby="forma_zajęć">
+                    <button class="dropdown-toggle" type="button" id="forma_zajęć" aria-expanded="false">
+                        Wybierz formę zajęć
+                    </button>
+                    <div class="dropdown-menu" aria-hidden="true">
+                        <label>
+                            <input type="checkbox" id="select-all" aria-label="Zaznacz wszystkie"/> Zaznacz wszystkie
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Laboratorium" /> Laboratorium
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Audytorium" /> Audytorium
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Lektorat" /> Lektorat
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Wykład" /> Wykład
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Projekt" /> Projekt
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Egzamin" /> Egzamin
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Seminarium" /> Seminarium
+                        </label>
+                        <label>
+                            <input type="checkbox" name="forma" value="Konsultacje" /> Konsultacje
+                        </label>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="search-button" aria-label="Szukaj">Szukaj</button>
+                </div>
+                <div class="buttons">
+                    <button type="reset" class="reset-button" aria-label="Wyczyść filtry">Wyczyść filtry</button>
+                </div>
+            </form>
+        </aside>
+        <section id="schedule">
+            <div id="schedule-toolbar">
+                <div id="navigation">
+                    <button>&lt;</button>
+                    <button>&gt;</button>
+                </div>
+                <div id="schedule-date">
+                    <h2 class="date">Placeholder</h2>
+                </div>
+                <div id="schedule-view-controls">
+                    <button>Dzień</button>
+                    <button>Tydzień</button>
+                    <button>Miesiąc</button>
+                    <button>Ustaw</button>
+                </div>
+            </div>
+
+            <div id="calendar">
+                <div class="time-slot">7:00</div>
+                <div class="time-slot">8:00</div>
+                <div class="time-slot">9:00</div>
+                <div class="time-slot">10:00</div>
+                <div class="time-slot">11:00</div>
+                <div class="time-slot">12:00</div>
+                <div class="time-slot">13:00</div>
+                <div class="time-slot">14:00</div>
+                <div class="time-slot">15:00</div>
+                <div class="time-slot">16:00</div>
+                <div class="time-slot">17:00</div>
+                <div class="time-slot">18:00</div>
+                <div class="time-slot">19:00</div>
+                <div class="time-slot">20:00</div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>KryptoŻabki 2025 </p>
+        <button>Zapisz</button>
+        <button>Udostępnij</button>
+        <button>Drukuj</button>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+}
+
+header #logo {
+    width: 100px;
+    height: 50px;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 50px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    flex: 1;
+}
+
+header #controls button {
+    margin: 0 5px;
+}
+
+main {
+    display: flex;
+    gap: 40px;
+    height: calc(100vh - 100px);
+}
+
+aside {
+    width: 300px;
+    padding: 10px;
+    background-color: #171e31;
+    border-right: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-button, .reset-button {
+    background-color: #232E52;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.search-button:hover, .reset-button:hover {
+    background-color: #303f6d;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    width: 200px;
+    text-align: left;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    z-index: 1;
+}
+
+.dropdown-menu label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+#schedule {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#schedule-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+}
+
+#navigation, #view-controls {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 10px;
+}
+
+#calendar {
+    flex: 1;
+    display: grid;
+    grid-template-rows: repeat(14, 1fr);
+    grid-auto-columns: 1fr;
+    border: 1px solid #ccc;
+}
+
+.time-slot {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-top: 1px solid #ccc;
+}
