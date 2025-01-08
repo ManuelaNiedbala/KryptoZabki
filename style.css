@@ -46,7 +46,7 @@ main {
 aside {
     width: 300px;
     padding: 10px;
-    background-color: #171e31;
+    background-color: #bbbbbb;
     border-right: 1px solid #ccc;
     box-sizing: border-box;
 }
@@ -71,7 +71,7 @@ form input, form select, form button {
 }
 
 .search-button, .reset-button {
-    background-color: #232E52;
+    background-color: #8c8f99;
     color: white;
     border: none;
     cursor: pointer;
@@ -140,10 +140,22 @@ form input, form select, form button {
 #calendar {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr 4fr; /* Pierwsza kolumna węższa dla godzin */
-    grid-template-rows: auto repeat(28, 1fr); /* Każda godzina ma dwa wiersze */
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto repeat(28, 1fr);
     border: 1px solid #ccc;
     position: relative;
+}
+
+#calendar.week-view {
+    grid-template-columns: 1fr repeat(7, 1fr);
+}
+
+.header-row {
+    display: contents;
+}
+
+.header.day-header {
+    grid-column: span 1;
 }
 
 .time-slot,

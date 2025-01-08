@@ -33,9 +33,29 @@ function getDayName(date) {
     return date.toLocaleDateString('pl-PL', options);
 }
 
+function getWeekRange(date) {
+    const startOfWeek = new Date(date);
+    startOfWeek.setDate(date.getDate() - date.getDay() + 1);
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+    return {
+        start: startOfWeek,
+        end: endOfWeek
+    };
+}
+
+function formatWeekRange(range) {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const start = range.start.toLocaleDateString('pl-PL', options);
+    const end = range.end.toLocaleDateString('pl-PL', options);
+    return `${start} - ${end}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const calendar = document.querySelector('#calendar');
     let currentDate = new Date();
+    let isWeekView = false;
 
     // Funkcja czyszcząca kalendarz
     function clearCalendar() {
@@ -103,20 +123,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const dateElement = document.querySelector('#schedule-date .date');
         const dayHeader = document.querySelector('.day-header');
 
-        dateElement.textContent = formatDate(currentDate);
-        dayHeader.textContent = getDayName(currentDate);
+        if (isWeekView) {
+            const weekRange = getWeekRange(currentDate);
+            dateElement.textContent = formatWeekRange(weekRange);
+            dayHeader.textContent = `Tydzień ${weekRange.start.getWeek()}`;
+        } else {
+            dateElement.textContent = formatDate(currentDate);
+            dayHeader.textContent = getDayName(currentDate);
+        }
 
         renderEventsForDate(currentDate);
     }
 
     // Obsługa zmiany daty
     document.getElementById('prev-day').addEventListener('click', () => {
-        currentDate.setDate(currentDate.getDate() - 1);
+        if (isWeekView) {
+            currentDate.setDate(currentDate.getDate() - 7);
+        } else {
+            currentDate.setDate(currentDate.getDate() - 1);
+        }
         updateDateDisplay();
     });
 
     document.getElementById('next-day').addEventListener('click', () => {
-        currentDate.setDate(currentDate.getDate() + 1);
+        if (isWeekView) {
+            currentDate.setDate(currentDate.getDate() + 7);
+        } else {
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
         updateDateDisplay();
     });
 
@@ -134,8 +168,101 @@ document.addEventListener('DOMContentLoaded', () => {
         calendar.appendChild(eventSlot);
     }
 
+    // Funkcja tworząca nagłówki dni tygodnia
+    function createWeekHeaders(startDate) {
+        const daysOfWeek = ['Godzina'];
+        const dayNames = ['Niedz.', 'Pon.', 'Wt.', 'Śr.', 'Czw.', 'Pt.', 'Sob.'];
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(startDate);
+            date.setDate(startDate.getDate() + i);
+            const dayName = dayNames[date.getDay()];
+            const formattedDate = `${dayName} ${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}`;
+            daysOfWeek.push(formattedDate);
+        }
+
+        const headerRow = document.createElement('div');
+        headerRow.classList.add('header-row');
+
+        daysOfWeek.forEach(day => {
+            const dayHeader = document.createElement('div');
+            dayHeader.classList.add('header', 'day-header');
+            dayHeader.textContent = day;
+            headerRow.appendChild(dayHeader);
+        });
+
+        return headerRow;
+    }
+
+    // Obsługa zmiany widoku
+    document.getElementById('week-view').addEventListener('click', () => {
+        const calendar = document.getElementById('calendar');
+        calendar.innerHTML = '';
+
+        const startDate = new Date(currentDate);
+        startDate.setDate(currentDate.getDate() - currentDate.getDay() + 1);
+
+        calendar.appendChild(createWeekHeaders(startDate));
+
+        for (let hour = 7; hour <= 20; hour++) {
+            const timeSlot = document.createElement('div');
+            timeSlot.classList.add('time-slot');
+            timeSlot.textContent = `${hour}:00`;
+            calendar.appendChild(timeSlot);
+
+            for (let day = 0; day < 7; day++) {
+                const eventSlot = document.createElement('div');
+                eventSlot.classList.add('event-slot');
+                eventSlot.dataset.startHour = hour;
+                eventSlot.dataset.endHour = hour + 1;
+
+                const date = new Date(startDate);
+                date.setDate(startDate.getDate() + day);
+                eventSlot.dataset.date = date.toISOString().split('T')[0];
+
+                calendar.appendChild(eventSlot);
+            }
+        }
+
+        calendar.classList.add('week-view');
+        isWeekView = true;
+        updateDateDisplay();
+        renderEventsForDate(currentDate); 
+    });
+
+    document.getElementById('day-view').addEventListener('click', () => {
+        const calendar = document.getElementById('calendar');
+        calendar.innerHTML = '';
+    
+        const timeHeader = document.createElement('div');
+        timeHeader.classList.add('header', 'time-header');
+        timeHeader.textContent = 'Godzina';
+        calendar.appendChild(timeHeader);
+    
+        const dayHeader = document.createElement('div');
+        dayHeader.classList.add('header', 'day-header');
+        dayHeader.textContent = getDayName(currentDate); 
+        calendar.appendChild(dayHeader);
+    
+        for (let hour = 7; hour <= 20; hour++) {
+            const timeSlot = document.createElement('div');
+            timeSlot.classList.add('time-slot');
+            timeSlot.textContent = `${hour}:00`;
+            calendar.appendChild(timeSlot);
+    
+            const eventSlot = document.createElement('div');
+            eventSlot.classList.add('event-slot');
+            eventSlot.dataset.startHour = hour;
+            eventSlot.dataset.endHour = hour + 1;
+            eventSlot.dataset.date = currentDate.toISOString().split('T')[0]; 
+            calendar.appendChild(eventSlot);
+        }
+    
+        calendar.classList.remove('week-view');
+        isWeekView = false;
+        updateDateDisplay(); 
+        renderEventsForDate(currentDate); 
+    });
+    
     // Pierwsze wyświetlenie
     updateDateDisplay();
 });
-
-
