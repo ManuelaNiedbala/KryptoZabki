@@ -85,8 +85,8 @@
         <section id="schedule">
             <div id="schedule-toolbar">
                 <div id="navigation">
-                    <button>&lt;</button>
-                    <button>&gt;</button>
+                    <button id="prev-day">&lt;</button>
+                    <button id="next-day">&gt;</button>
                 </div>
                 <div id="schedule-date">
                     <h2 class="date">Placeholder</h2>
@@ -100,20 +100,9 @@
             </div>
 
             <div id="calendar">
-                <div class="time-slot">7:00</div>
-                <div class="time-slot">8:00</div>
-                <div class="time-slot">9:00</div>
-                <div class="time-slot">10:00</div>
-                <div class="time-slot">11:00</div>
-                <div class="time-slot">12:00</div>
-                <div class="time-slot">13:00</div>
-                <div class="time-slot">14:00</div>
-                <div class="time-slot">15:00</div>
-                <div class="time-slot">16:00</div>
-                <div class="time-slot">17:00</div>
-                <div class="time-slot">18:00</div>
-                <div class="time-slot">19:00</div>
-                <div class="time-slot">20:00</div>
+                <div class="header time-header">Godzina</div>
+                <div class="header day-header">Dzień</div>
+                <!-- Generujemy dynamicznie godziny i wiersze zajęć w JS -->
             </div>
         </section>
     </main>
