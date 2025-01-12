@@ -1,0 +1,88 @@
+main_content {
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+    height: calc(100vh - 100px);
+    flex-direction: row; 
+
+    aside {
+        width: 300px;
+        padding: 10px;
+        background-color: #74767a;
+        box-sizing: border-box;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        form input, form select, form button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .search-button, .reset-button {
+            background-color: #8c8f99;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .search-button:hover, .reset-button:hover {
+            background-color: #303f6d;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px;
+            cursor: pointer;
+            width: 200px;
+            text-align: left;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            z-index: 1;
+        }
+
+        .dropdown-menu label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    }
+
+
+
+    #calendar {
+        width: 800px;
+  
+    }
+
+
+    
+}

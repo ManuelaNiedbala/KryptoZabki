@@ -1,0 +1,45 @@
+navbar {
+    display: flex;
+    justify-content: flex-end; // Ustawienie elementów na prawą stronę
+    padding: 10px;
+    color: white;
+
+    #accesibility_settings {
+        display: flex;
+        gap: 10px;
+        margin-left: auto; // Przesunięcie kontenera z przyciskami na prawą stronę
+
+        button, summary {
+            margin: 0 5px;
+            background: white;
+            color: #007bff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+
+            &:hover {
+                background: #ffffff;
+                color: white;
+            }
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100px;
+            z-index: 1;
+        }
+
+        details[open] .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+}

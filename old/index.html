@@ -2,6 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KryptoŻabki Plan ZUT</title>
     <link rel="stylesheet" href="style.css">
@@ -21,23 +35,23 @@
     <main>
         <aside>
             <form>
-                <label for="wykladowca">Wykładowca</label>
-                <input type="text" id="wykladowca" name="wykladowca" placeholder="Podaj nazwisko">
+                <label for="lecturer">Wykładowca</label>
+                <input type="text" id="lecturer" name="lecturer" placeholder="Podaj nazwisko">
 
-                <label for="numer_albumu">Numer albumu</label>
-                <input type="text" id="numer_albumu" name="numer_albumu" placeholder="Podaj numer albumu">
+                <label for="studentID">Numer albumu</label>
+                <input type="text" id="studentID" name="studentID" placeholder="Podaj numer albumu">
 
-                <label for="przedmiot">Przedmiot</label>
-                <input type="text" id="przedmiot" name="przedmiot" placeholder="Podaj przedmiot">
+                <label for="subject">Przedmiot</label>
+                <input type="text" id="subject" name="subject" placeholder="Podaj przedmiot">
 
-                <label for="grupa">Grupa</label>
-                <input type="text" id="grupa" name="grupa" placeholder="Podaj grupę">
+                <label for="group">Grupa</label>
+                <input type="text" id="group" name="group" placeholder="Podaj grupę">
 
                 <label for="wydzial">Wydział</label>
                 <input type="text" id="wydzial" name="wydzial" placeholder="Podaj wydział">
 
-                <label for="sala">Sala</label>
-                <input type="text" id="sala" name="sala" placeholder="Podaj salę">
+                <label for="room">Sala</label>
+                <input type="text" id="room" name="room" placeholder="Podaj salę">
 
                 <label for="forma_zajec">Forma zajęć</label>
                 <div class="dropdown" role="group" aria-labelledby="forma_zajęć">
@@ -83,27 +97,7 @@
             </form>
         </aside>
         <section id="schedule">
-            <div id="schedule-toolbar">
-                <div id="navigation">
-                    <button id="prev-day">&lt;</button>
-                    <button id="next-day">&gt;</button>
-                </div>
-                <div id="schedule-date">
-                    <h2 class="date">Placeholder</h2>
-                </div>
-                <div id="schedule-view-controls">
-                    <button id="day-view">Dzień</button>
-                    <button id="week-view">Tydzień</button>
-                    <button>Miesiąc</button>
-                    <button>Ustaw</button>
-                </div>
-            </div>
-
-            <div id="calendar">
-                <div class="header time-header">Godzina</div>
-                <div class="header day-header">Dzień</div>
-                <!-- Generujemy dynamicznie godziny i wiersze zajęć w JS -->
-            </div>
+            <div id="calendar"></div>
         </section>
     </main>
     <footer>

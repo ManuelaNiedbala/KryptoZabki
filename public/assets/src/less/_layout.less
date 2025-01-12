@@ -1,0 +1,19 @@
+body {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "navbar"
+    "header"
+    "main"
+    "legend"
+    "footer";
+  height: 100vh;
+}
+
+navbar {
+  grid-area: navbar;
+}
+
+legend {
+  grid-area: legend;
+}
