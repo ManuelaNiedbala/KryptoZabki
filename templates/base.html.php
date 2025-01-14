@@ -10,6 +10,6 @@
 </head>
 <body <?= isset($bodyClass) ? "class='$bodyClass'" : '' ?>>
 <main><?= $main ?? null ?></main>
-<footer>&copy;<?= date('Y') ?> Custom Framework</footer>
+<footer>&copy;<?= date('Y') ?> KryptoŻabki</footer>
 </body>
 </html>

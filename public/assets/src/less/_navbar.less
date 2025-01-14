@@ -1,45 +1,96 @@
-navbar {
+#accessibility-settings {
+    position: fixed; // Przyklejenie do stałej pozycji
+    top: 10px; // Odległość od góry strony
+    right: 20px; // Odległość od prawej krawędzi strony
     display: flex;
-    justify-content: flex-end; // Ustawienie elementów na prawą stronę
-    padding: 10px;
-    color: white;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000; // Warstwa nad innymi elementami
 
-    #accesibility_settings {
-        display: flex;
+    #accessibility-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        color: white;
+
+        &:hover {
+            color: #ffcc00;
+        }
+    }
+
+    #accessibility-dropdown {
+        display: none; // Menu początkowo ukryte
+        position: absolute;
+        top: 40px; // Odległość rozwijanego menu od przycisku
+        right: 0;
+        background: #171E31;
+        border: solid 0.5px #768BC0;
+        border-radius: 8px;
+        padding: 10px;
+        color: #768BC0;
+        z-index: 10;
+        display: flex; // Przyciski w poziomie
         gap: 10px;
-        margin-left: auto; // Przesunięcie kontenera z przyciskami na prawą stronę
 
-        button, summary {
-            margin: 0 5px;
-            background: white;
-            color: #007bff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
+        details {
+            position: relative;
 
-            &:hover {
-                background: #ffffff;
+            summary {
+                list-style: none;
+                background: none;
+                border: none;
                 color: white;
+                font-size: 18px;
+                cursor: pointer;
+
+                &:hover {
+                    color: #ffcc00;
+                }
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 100%;
+                background: #171E31;
+                border: solid 0.5px #768BC0;
+                border-radius: 8px;
+                padding: 10px;
+                z-index: 10;
+
+                button {
+                    display: block;
+                    background: none;
+                    border: none;
+                    padding: 5px;
+                    color: white;
+                    text-align: left;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: #ffcc00;
+                        color: black;
+                    }
+                }
+            }
+
+            &[open] .dropdown-menu {
+                display: block;
             }
         }
+    }
 
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 10px;
-            width: 100px;
-            z-index: 1;
-        }
+    button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
 
-        details[open] .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu label {
-            display: block;
-            margin-bottom: 5px;
+        &:hover {
+            color: #ffcc00;
         }
     }
 }
