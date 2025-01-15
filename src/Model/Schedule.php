@@ -6,44 +6,95 @@ use App\Service\Config;
 class  Schedule
 {
     private ?int $id = null;
-    private ?string $subject = null;
-    private ?string $content = null;
+    private ?int $subject_id = null;
+    private ?int $lecturer_id = null;
+    private ?int $faculty_id = null;
+    private ?int $group_id = null;
+    private ?int $room_id = null;
+    private ?string $time_start = null;
+    private ?string $time_end = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(?int $id):  Schedule
+    public function setId(int $id):  Schedule
     {
         $this->id = $id;
-
-        return $this;
     }
 
-    public function getSubject(): ?string
+    public function getSubjectId(): ?int
     {
-        return $this->subject;
+        return $this->subject_id;
     }
 
-    public function setSubject(?string $subject):  Schedule
+    public function setSubjectId(int $subject_id):  Schedule
     {
-        $this->subject = $subject;
-
-        return $this;
+        $this->subject_id = $subject_id;
     }
 
-    public function getContent(): ?string
+    public function getLecturerId(): ?int
     {
-        return $this->content;
+        return $this->lecturer_id;
     }
 
-    public function setContent(?string $content):  Schedule
+    public function setLecturerId(int $lecturer_id):  Schedule
     {
-        $this->content = $content;
-
-        return $this;
+        $this->lecturer_id = $lecturer_id;
     }
+
+    public function getFacultyId(): ?int
+    {
+        return $this->faculty_id;
+    }
+
+    public function setFacultyId(int $faculty_id):  Schedule
+    {
+        $this->faculty_id = $faculty_id;
+    }
+
+    public function getGroupId(): ?int
+    {
+        return $this->group_id;
+    }
+
+    public function setGroupId(int $group_id):  Schedule
+    {
+        $this->group_id = $group_id;
+    }
+
+    public function getRoomId(): ?int
+    {
+        return $this->room_id;
+    }
+
+    public function setRoomId(int $room_id):  Schedule
+    {
+        $this->room_id = $room_id;
+    }
+
+    public function getTimeStart(): ?string
+    {
+        return $this->time_start;
+    }
+
+    public function setTimeStart(string $time_start):  Schedule
+    {
+        $this->time_start = $time_start;
+    }
+
+    public function getTimeEnd(): ?string
+    {
+        return $this->time_end;
+    }
+
+    public function setTimeEnd(string $time_end):  Schedule
+    {
+        $this->time_end = $time_end;
+    }
+
+
 
     public static function fromArray($array):  Schedule
     {

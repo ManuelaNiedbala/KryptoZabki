@@ -3,10 +3,10 @@ namespace App\Model;
 
 use App\Service\Config;
 
-class Group
+class Room
 {
     private ?int $id = null;
-    private ?string $group_name = null;
+    private ?string $room_name = null;
     private ?int $faculty_id = null;
 
     public function getId(): ?int
@@ -14,19 +14,19 @@ class Group
         return $this->id;
     }
 
-    public function setId(int $id): Group
+    public function setId(int $id): Room
     {
         $this->id = $id;
     }
 
-    public function getGroupName(): ?string
+    public function getRoomName(): ?string
     {
-        return $this->group_name;
+        return $this->room_name;
     }
 
-    public function setGroupName(string $group_name): Group
+    public function setRoomName(string $room_name): Room
     {
-        $this->group_name = $group_name;
+        $this->room_name = $room_name;
     }
 
     public function getFacultyId(): ?int
@@ -34,7 +34,7 @@ class Group
         return $this->faculty_id;
     }
 
-    public function setFacultyId(int $faculty_id): Group
+    public function setFacultyId(int $faculty_id): Room
     {
         $this->faculty_id = $faculty_id;
     }

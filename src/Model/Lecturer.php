@@ -1,11 +1,12 @@
 <?php
 namespace App\Model;
+
 use App\Service\Config;
 
-class lecturer
+class Lecturer
 {
     private ?int $id = null;
-    private ?string $lecturerName = null;
+    private ?string $lecturer_name = null;
     private ?string $title = null;
 
     public function getId(): ?int
@@ -13,19 +14,19 @@ class lecturer
         return $this->id;
     }
 
-    public function setId(?int $id): void
+    public function setId(int $id): Lecturer
     {
         $this->id = $id;
     }
 
     public function getLecturerName(): ?string
     {
-        return $this->lecturerName;
+        return $this->lecturer_name;
     }
 
-    public function setLecturerName(?string $lecturerName): void
+    public function setLecturerName(string $lecturer_name): Lecturer
     {
-        $this->lecturerName = $lecturerName;
+        $this->lecturer_name = $lecturer_name;
     }
 
     public function getTitle(): ?string
@@ -33,11 +34,8 @@ class lecturer
         return $this->title;
     }
 
-    public function setTitle(?string $title): void
+    public function setTitle(string $title): Lecturer
     {
         $this->title = $title;
     }
-
-    
-
 }

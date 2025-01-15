@@ -1,0 +1,121 @@
+<?php
+namespace App\Model;
+
+use App\Service\Config;
+
+class Subject
+{
+    private ?int $id = null;
+    private ?string $subject_name = null;
+    private ?string $subject_form = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): Subject
+    {
+        $this->id = $id;
+    }
+
+    public function getSubjectName(): ?string
+    {
+        return $this->subject_name;
+    }
+
+    public function setSubjectName(string $subject_name): Subject
+    {
+        $this->subject_name = $subject_name;
+    }
+
+    public function getSubjectForm(): ?string
+    {
+        return $this->subject_form;
+    }
+
+    public function setSubjectForm(string $subject_form): Subject
+    {
+        $this->subject_form = $subject_form;
+    }
+
+    public static function fromArray($array): Subject
+    {
+        $subject = new self();
+        $subject->fill($array);
+
+        return $subject;
+    }
+
+    public function fill($array): Subject
+    {
+        if(isset($array['id']) && ! $this->getId()) {
+            $this->setId($array['id']);
+        }
+        if(isset($array['subject_name'])) {
+            $this->setSubjectName($array['subject_name']);
+        }
+        if(isset($array['subject_form'])) {
+            $this->setSubjectForm($array['subject_form']);
+        }
+
+        return $this;
+    }
+
+    public static function findAll(): array
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT * FROM subjects';
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+
+        $subjects = [];
+        $subjectsArray = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        foreach ($subjectsArray as $subjectArray) {
+            $subjects[] = self::fromArray($subjectArray);
+        }
+
+        return $subjects;
+    }
+
+    public static function findSubject(string $subject_name, string $subject_form): ?Subject
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT * FROM subjects WHERE subject_name = :subject_name AND subject_form = :subject_form';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['subject_name' => $subject_name, 'subject_form' => $subject_form]);
+
+        $search = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if (!$search) {
+            return null;
+        }
+        $subject = self::fromArray($search);
+
+        return $subject;
+    }
+
+    public function save(): void
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        if (!$this->getId()) {
+            $sql = 'INSERT INTO subjects (subject_name, subject_form) VALUES (:subject_name, :subject_form)';
+            $statement = $pdo->prepare($sql);
+            $statement->execute([
+                'subject_name' => $this->getSubjectName(),
+                'subject_form' => $this->getSubjectForm()
+            ]);
+            
+            $this->setId((int)$pdo->lastInsertId());
+        } else {
+            $sql = 'UPDATE subjects SET subject_name = :subject_name, subject_form = :subject_form WHERE id = :id';
+            $statement = $pdo->prepare($sql);
+            $statement->execute([
+                'id' => $this->getId(),
+                'subject_name' => $this->getSubjectName(),
+                'subject_form' => $this->getSubjectForm()
+            ]);
+        }
+    }
+
+ 
+}
