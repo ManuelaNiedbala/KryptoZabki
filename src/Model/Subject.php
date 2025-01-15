@@ -104,7 +104,7 @@ class Subject
                 'subject_name' => $this->getSubjectName(),
                 'subject_form' => $this->getSubjectForm()
             ]);
-            
+
             $this->setId((int)$pdo->lastInsertId());
         } else {
             $sql = 'UPDATE subjects SET subject_name = :subject_name, subject_form = :subject_form WHERE id = :id';
@@ -116,6 +116,4 @@ class Subject
             ]);
         }
     }
-
- 
 }

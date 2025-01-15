@@ -35,7 +35,11 @@ CREATE TABLE lecturer (
     lecturer_name TEXT NOT NULL,
     title TEXT NOT NULL
 );
-CREATE TABLE student (id INTEGER PRIMARY KEY);
+CREATE TABLE student (
+    id INTEGER PRIMARY KEY,
+    faculty_id INTEGER NOT NULL,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(id)
+);
 CREATE TABLE schedules (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     subject_id INTEGER NOT NULL,
