@@ -1,0 +1,52 @@
+@import (less) "../vendor/reset.css";
+@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap";
+
+@import "_global";
+@import "_navbar";
+@import "_layout";
+@import "_header";
+@import "_main";
+@import "_legend";
+@import "_footer";
+@import "_calendar";
+
+.fc .fc-button {
+  background-color: #232E52; // Ustawienie koloru tła przycisków
+  border: none; // Usunięcie obramowania
+  color: #FFF; // Ustawienie koloru tekstu
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.fc .fc-button:hover {
+  background-color: #303f6d; // Kolor tła przycisków po najechaniu
+}
+
+.fc .fc-button:focus {
+  outline: none; // Usunięcie obramowania po kliknięciu
+}
+
+.fc .fc-button-group .fc-button {
+  margin-right: 5px; // Odstęp między przyciskami
+}
+
+.fc .fc-button-group .fc-button:last-child {
+  margin-right: 0; // Usunięcie odstępu dla ostatniego przycisku
+}
+
+/* Stylizacja przycisków strzałek jako kółka */
+.fc .fc-prev-button, .fc .fc-next-button {
+  border-radius: 50%; // Ustawienie kształtu na kółko
+  width: 30px; // Szerokość przycisku
+  height: 30px; // Wysokość przycisku
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; // Usunięcie paddingu
+}
+
+.fc .fc-prev-button:hover, .fc .fc-next-button:hover {
+  background-color: #303f6d; // Kolor tła przycisków po najechaniu
+}

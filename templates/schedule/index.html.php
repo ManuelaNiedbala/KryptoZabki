@@ -53,14 +53,20 @@ ob_start(); ?>
          <?php include __DIR__ . '/calendar.html.php'; ?>
     </section>
 </main_content>
-<!--<legend>
-    <h2>Legenda</h2>
+<legend>
     <ul>
-        <li><span class="event-1"></span> Wydarzenie 1</li>
-        <li><span class="event-2"></span> Wydarzenie 2</li>
+        <li><span class="event-1"></span> Laboratorium</li>
+        <li><span class="event-2"></span> Wyklad</li>
+        <li><span class="event-3"></span> Lektorat</li>
+        <li><span class="event-4"></span> Audytoryjne</li>
+        <li><span class="event-5"></span> Projekt</li>
+        <li><span class="event-6"></span> Egzamin</li>
+        <li><span class="event-7"></span> Konsultacje</li>
+        <li><span class="event-8"></span> Seminarium</li>
+
     </ul>
 </legend>
--->
+
 </body>
 </html>
 

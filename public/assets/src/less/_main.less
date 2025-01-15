@@ -6,8 +6,8 @@ main_content {
     flex-direction: row;
 
     aside {
-        width: 507px;
-        height: 960px;
+        width: 300px;
+        height: 730px; /* Уменьшено в 2 раза */
         flex-shrink: 0;
         border-radius: 10px;
         background: rgba(23, 30, 49, 0.85);
@@ -16,64 +16,67 @@ main_content {
         0px 221px 132px 0px rgba(0, 0, 0, 0.05),
         0px 98px 98px 0px rgba(0, 0, 0, 0.09),
         0px 25px 54px 0px rgba(0, 0, 0, 0.10);
-        padding: 20px;
+        padding: 10px; /* Уменьшено в 2 раза */
         box-sizing: border-box;
     }
 
     form {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 10px; /* Расстояние между элементами */
     }
 
     form label {
         color: #FFF;
-        text-align: center;
         font-family: Onest, sans-serif;
-        font-size: 24px;
+        font-size: 16px; /* Размер шрифта */
         font-style: normal;
-        font-weight: 600;
-        line-height: 21px; /* 87.5% */
+        font-weight: 600; /* Полужирный */
+        line-height: normal; /* Высота строки */
+        display: inline-block; /* Чтобы размер соответствовал тексту */
+        margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+        text-align: left; /* Выравнивание по левому краю */
+
+
     }
 
     form input {
-        width: 461px;
-        height: 47px;
-        flex-shrink: 0;
-        border-bottom: 1px solid #879DDF;
-        background: #1D2134;
-        color: #9D9DA5;
-        text-align: center;
-        font-family: Onest, sans-serif;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 21px; /* 105% */
-        padding: 0 10px;
-        box-sizing: border-box;
+        width: 100%; /* Заполнение ширины контейнера */
+        height: 36px; /* Высота поля ввода */
+        border-bottom: 1px solid #879DDF; /* Нижняя граница */
+        background: #1D2134; /* Фон поля ввода */
+        color: #9D9DA5; /* Цвет текста */
+        text-align: left; /* Выравнивание текста внутри поля */
+        font-family: Onest, sans-serif; /* Шрифт */
+        font-size: 16px; /* Размер шрифта */
+        font-style: normal; /* Нормальный стиль */
+        font-weight: 400; /* Нормальная жирность */
+        padding: 0 10px; /* Внутренний отступ */
+        box-sizing: border-box; /* Учет отступов и границ */
     }
+
 
     .buttons {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px; /* Уменьшено в 2 раза */
     }
 
     .search-button,
     .reset-button,
     .management-button {
-        width: 461px;
-        height: 56px;
+        width: 280px; /* Изменено на 280px */
+        height: 40px; /* Уменьшено в 2 раза */
         flex-shrink: 0;
         border-radius: 6px;
         background: #232E52;
         color: #FFF;
         text-align: center;
         font-family: Onest, sans-serif;
-        font-size: 24px;
+        font-size: 20px; /* Уменьшено в 2 раза */
         font-style: normal;
         font-weight: 400;
-        line-height: 21px; /* 87.5% */
+        line-height: 10.5px; /* Уменьшено в 2 раза */
         border: none;
         cursor: pointer;
     }
@@ -81,8 +84,10 @@ main_content {
     .search-button:hover,
     .reset-button:hover,
     .management-button:hover {
-        background: #303f6d;
+        background: #879DDF; /* Новый цвет фона при наведении */
+        color: #101010; /* Новый цвет текста при наведении */
     }
+
 
     .dropdown {
         position: relative;
@@ -95,13 +100,13 @@ main_content {
         color: #9D9DA5;
         text-align: center;
         font-family: Onest, sans-serif;
-        font-size: 20px;
+        font-size: 10px; /* Уменьшено в 2 раза */
         font-style: normal;
         font-weight: 400;
-        line-height: 21px; /* 105% */
-        width: 461px;
-        height: 47px;
-        padding: 0 10px;
+        line-height: 10.5px; /* Уменьшено в 2 раза */
+        width: 230.5px; /* Уменьшено в 2 раза */
+        height: 23.5px; /* Уменьшено в 2 раза */
+        padding: 0 5px; /* Уменьшено в 2 раза */
         box-sizing: border-box;
         cursor: pointer;
     }
@@ -111,7 +116,7 @@ main_content {
         position: absolute;
         background: rgba(23, 30, 49, 0.85);
         border: 1px solid #879DDF;
-        width: 461px;
+        width: 230.5px; /* Уменьшено в 2 раза */
         z-index: 1;
     }
 
@@ -122,15 +127,15 @@ main_content {
     .dropdown-menu label {
         color: #FFF;
         font-family: Onest, sans-serif;
-        font-size: 24px;
+        font-size: 12px; /* Уменьшено в 2 раза */
         font-style: normal;
         font-weight: 600;
-        line-height: 21px; /* 87.5% */
+        line-height: 10.5px; /* Уменьшено в 2 раза */
     }
 
     .vector-icon {
-        width: 11px;
-        height: 5px;
+        width: 5.5px; /* Уменьшено в 2 раза */
+        height: 2.5px; /* Уменьшено в 2 раза */
         flex-shrink: 0;
         fill: #FFF;
         stroke-width: 2px;
@@ -140,11 +145,13 @@ main_content {
 
 
 
+
+
     #calendar {
-        width: 800px;
-  
+        width: 900px;
+
     }
 
 
-    
+
 }
