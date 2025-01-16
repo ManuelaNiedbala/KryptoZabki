@@ -8,11 +8,11 @@ ob_start(); ?>
     <button id="accessibility-button">☰</button>
     <div id="accessibility-dropdown">
         <details>
-            <summary>👁</summary>
+            <summary><i class="fas fa-eye"></i></summary>
             <div class="dropdown-menu">
-                <button type="button" onclick="setEyeOption('eye1')">Eye 1</button>
-                <button type="button" onclick="setEyeOption('eye2')">Eye 2</button>
-                <button type="button" onclick="setEyeOption('eye3')">Eye 3</button>
+                <button type="button" onclick="setEyeOption('eye1')"><i class="fas fa-eye"></i></button>
+                <button type="button" onclick="setEyeOption('eye2')"><i class="fas fa-eye"></i></button>
+                <button type="button" onclick="setEyeOption('eye3')"><i class="fas fa-eye"></i></button>
             </div>
         </details>
         <button>A</button>
@@ -43,6 +43,3 @@ ob_start(); ?>
         alert(`Wybrano opcję: ${option}`);
     }
 </script>
-
-
-

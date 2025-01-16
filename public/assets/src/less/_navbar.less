@@ -59,6 +59,9 @@
                 border-radius: 8px;
                 padding: 10px;
                 z-index: 10;
+                display: flex; // Ustawienie flexboxa
+                flex-direction: column; // Ustawienie elementów w kolumnie
+                align-items: center; // Wyśrodkowanie elementów w poziomie
 
                 button {
                     display: block;
@@ -66,18 +69,30 @@
                     border: none;
                     padding: 5px;
                     color: white;
-                    text-align: left;
+                    text-align: center; // Wyśrodkowanie tekstu
                     cursor: pointer;
 
                     &:hover {
                         background: #879DDF;
                         color: black;
                     }
+
+                    &:nth-child(2) i {
+                        color: #E1FF00; // Zmiana koloru drugiego oka
+                    }
+
+                    &:nth-child(3) {
+                        background: #E1FF00; // Zmiana koloru tła trzeciego oka
+                    }
+
+                    &:nth-child(3) i {
+                        color: black; // Zmiana koloru trzeciego oka
+                    }
                 }
             }
 
             &[open] .dropdown-menu {
-                display: block;
+                display: flex; // Wyświetlenie menu w kolumnie
             }
         }
     }

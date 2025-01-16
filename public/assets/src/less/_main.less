@@ -1,157 +1,189 @@
 main_content {
     display: flex;
     gap: 40px;
-    padding: 20px;
-    height: calc(100vh - 100px);
-    flex-direction: row;
+    flex-wrap: wrap; // Dodaj to, aby elementy mogły się zawijać
+}
 
-    aside {
-        width: 300px;
-        height: 730px; /* Уменьшено в 2 раза */
-        flex-shrink: 0;
-        border-radius: 10px;
-        background: rgba(23, 30, 49, 0.85);
-        box-shadow: 0px 613px 172px 0px rgba(0, 0, 0, 0.00),
-        0px 392px 157px 0px rgba(0, 0, 0, 0.01),
-        0px 221px 132px 0px rgba(0, 0, 0, 0.05),
-        0px 98px 98px 0px rgba(0, 0, 0, 0.09),
-        0px 25px 54px 0px rgba(0, 0, 0, 0.10);
-        padding: 10px; /* Уменьшено в 2 раза */
-        box-sizing: border-box;
-    }
+aside {
+    display: flex;
+    flex-direction: column;
+    width: 100%; // Zmień szerokość na 100%
+    max-width: 300px; // Ustaw maksymalną szerokość
+    border-radius: 10px;
+    background: rgba(23, 30, 49, 0.85);
+    box-shadow: 0px 613px 172px 0px rgba(0, 0, 0, 0.00),
+    0px 392px 157px 0px rgba(0, 0, 0, 0.01),
+    0px 221px 132px 0px rgba(0, 0, 0, 0.05),
+    0px 98px 98px 0px rgba(0, 0, 0, 0.09),
+    0px 25px 54px 0px rgba(0, 0, 0, 0.10);
+    padding: 10px;
+    box-sizing: border-box;
+    flex: 1; // Dodaj to, aby aside automatycznie dostosowywał swoją szerokość
+}
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px; /* Расстояние между элементами */
-    }
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-    form label {
-        color: #FFF;
-        font-family: Onest, sans-serif;
-        font-size: 16px; /* Размер шрифта */
-        font-style: normal;
-        font-weight: 600; /* Полужирный */
-        line-height: normal; /* Высота строки */
-        display: inline-block; /* Чтобы размер соответствовал тексту */
-        margin-bottom: 5px; /* Отступ между меткой и полем ввода */
-        text-align: left; /* Выравнивание по левому краю */
+form label {
+    color: #FFF;
+    font-family: Onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: inline-block;
+    margin-bottom: 5px;
+    text-align: left;
+}
 
+form input {
+    height: 36px;
+    border-bottom: 1px solid #879DDF;
+    background: #1D2134;
+    color: #9D9DA5;
+    text-align: left;
+    font-family: Onest, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
 
-    }
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%; // Dodaj to, aby dropdown dostosowywał swoją szerokość
+}
 
-    form input {
-        width: 100%; /* Заполнение ширины контейнера */
-        height: 36px; /* Высота поля ввода */
-        border-bottom: 1px solid #879DDF; /* Нижняя граница */
-        background: #1D2134; /* Фон поля ввода */
-        color: #9D9DA5; /* Цвет текста */
-        text-align: left; /* Выравнивание текста внутри поля */
-        font-family: Onest, sans-serif; /* Шрифт */
-        font-size: 16px; /* Размер шрифта */
-        font-style: normal; /* Нормальный стиль */
-        font-weight: 400; /* Нормальная жирность */
-        padding: 0 10px; /* Внутренний отступ */
-        box-sizing: border-box; /* Учет отступов и границ */
-    }
+.dropdown-toggle {
+    background-color: #232E52; // Zmień kolor tła na taki sam jak przyciski
+    border: none; // Usuń obramowanie
+    color: #FFF; // Zmień kolor tekstu na biały
+    text-align: center;
+    font-family: Onest, sans-serif;
+    font-size: 20px; // Zmień rozmiar czcionki na taki sam jak przyciski
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10.5px;
+    width: 100%; // Dodaj to, aby przycisk dostosowywał swoją szerokość
+    height: 40px; // Zmień wysokość na taką samą jak przyciski
+    padding: 0 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 6px; // Dodaj zaokrąglone rogi
+}
 
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: rgba(23, 30, 49, 0.85);
+    border: 1px solid #879DDF;
+    width: 100%; // Dodaj to, aby menu dostosowywało swoją szerokość
+    z-index: 1;
+}
 
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 5px; /* Уменьшено в 2 раза */
-    }
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
-    .search-button,
-    .reset-button,
-    .management-button {
-        width: 280px; /* Изменено на 280px */
-        height: 40px; /* Уменьшено в 2 раза */
-        flex-shrink: 0;
-        border-radius: 6px;
-        background: #232E52;
-        color: #FFF;
-        text-align: center;
-        font-family: Onest, sans-serif;
-        font-size: 20px; /* Уменьшено в 2 раза */
-        font-style: normal;
-        font-weight: 400;
-        line-height: 10.5px; /* Уменьшено в 2 раза */
-        border: none;
-        cursor: pointer;
-    }
+.dropdown-menu label {
+    display: flex;
+    align-items: center;
+    font-size: 14px; // Ustawienie osobnej wielkości fontu dla checkboxów
+}
 
-    .search-button:hover,
-    .reset-button:hover,
-    .management-button:hover {
-        background: #879DDF; /* Новый цвет фона при наведении */
-        color: #101010; /* Новый цвет текста при наведении */
-    }
+.management-dropdown {
+    position: relative; // Ustawienie pozycji względnej dla kontenera
+}
 
+.management-dropdown:hover .management-menu {
+    display: flex; // Użyj flexboxa, aby wyświetlić menu w kolumnie
+}
 
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
+.management-menu {
+    display: none; // Ukryj menu domyślnie
+    flex-direction: column; // Ustawienie elementów w kolumnie
+    border-radius: 6px; // Dodaj zaokrąglone rogi do menu
+    overflow: hidden; // Zapewnij, że zaokrąglone rogi będą widoczne
+    padding: 10px; // Dodaj padding, aby dodać odstęp między ramką a przyciskami
+    position: absolute; // Ustawienie pozycji absolutnej dla menu
+    top: 100%; // Ustawienie menu poniżej przycisku
+    left: 0; // Wyrównanie menu do lewej krawędzi kontenera
+    width: 100%; // Ustawienie szerokości menu na 100% szerokości kontenera
+    box-sizing: border-box; // Upewnij się, że padding jest wliczany do szerokości
+}
 
-    .dropdown-toggle {
-        background-color: #1D2134;
-        border: 1px solid #879DDF;
-        color: #9D9DA5;
-        text-align: center;
-        font-family: Onest, sans-serif;
-        font-size: 10px; /* Уменьшено в 2 раза */
-        font-style: normal;
-        font-weight: 400;
-        line-height: 10.5px; /* Уменьшено в 2 раза */
-        width: 230.5px; /* Уменьшено в 2 раза */
-        height: 23.5px; /* Уменьшено в 2 раза */
-        padding: 0 5px; /* Уменьшено в 2 раза */
-        box-sizing: border-box;
-        cursor: pointer;
-    }
+.management-menu .dropdown-item {
+    background-color: #232E52; // Ustaw kolor tła przycisków
+    color: #FFF; // Ustaw kolor tekstu na biały
+    border: none; // Usuń obramowanie
+    text-align: center;
+    font-family: Onest, sans-serif;
+    font-size: 16px; // Zmniejsz rozmiar czcionki
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5; // Dostosuj wysokość linii
+    width: 100%; // Ustaw szerokość na 100%
+    height: 30px; // Zmniejsz wysokość przycisków
+    padding: 0 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 0; // Usuń zaokrąglone rogi z przycisków
+    margin-bottom: 10px; // Dodaj margines dolny, aby zwiększyć odstęp między przyciskami
+}
 
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        background: rgba(23, 30, 49, 0.85);
-        border: 1px solid #879DDF;
-        width: 230.5px; /* Уменьшено в 2 раза */
-        z-index: 1;
-    }
+.management-menu .dropdown-item:last-child {
+    margin-bottom: 0; // Usuń margines dolny dla ostatniego elementu
+}
 
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+.management-menu .dropdown-item:hover {
+    background: #879DDF; // Zmień kolor tła przycisków po najechaniu
+    color: #101010; // Zmień kolor tekstu po najechaniu
+}
 
-    .dropdown-menu label {
-        color: #FFF;
-        font-family: Onest, sans-serif;
-        font-size: 12px; /* Уменьшено в 2 раза */
-        font-style: normal;
-        font-weight: 600;
-        line-height: 10.5px; /* Уменьшено в 2 раза */
-    }
+.vector-icon {
+    width: 5.5px;
+    height: 2.5px;
+    flex-shrink: 0;
+    fill: #FFF;
+    stroke-width: 2px;
+    stroke: #FFF;
+}
 
-    .vector-icon {
-        width: 5.5px; /* Уменьшено в 2 раза */
-        height: 2.5px; /* Уменьшено в 2 раза */
-        flex-shrink: 0;
-        fill: #FFF;
-        stroke-width: 2px;
-        stroke: #FFF;
-    }
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
+.search-button,
+.reset-button,
+.management-button,
+.dropdown-toggle {
+    width: 100%; // Zmień szerokość na 100%
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #232E52;
+    color: #FFF;
+    text-align: center;
+    font-family: Onest, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10.5px;
+    border: none;
+    cursor: pointer;
+}
 
-
-
-
-
-    #calendar {
-        width: 900px;
-
-    }
-
-
-
+.search-button:hover,
+.reset-button:hover,
+.management-button:hover,
+.dropdown-toggle:hover {
+    background: #879DDF;
+    color: #101010;
 }

@@ -1,12 +1,25 @@
-body {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-areas:
-    "navbar"
-    "header"
-    "main"
-    "legend"
-    "footer";
-  height: 100vh;
+navbar {
+  position: relative;
+  z-index: 2;
 }
 
+header {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px; // lub inna wartość, która odpowiada wysokości navbar
+}
+
+main_content {
+  display: flex;
+  margin: 40px;
+  padding-top: 20px; // opcjonalnie, aby dodać dodatkową przestrzeń
+}
+
+aside {
+  flex: 1;
+  margin-right: 20px; // opcjonalnie, aby dodać odstęp między aside a schedule
+}
+
+#schedule {
+  flex: 2;
+}

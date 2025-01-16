@@ -4,11 +4,11 @@
 /** @var \App\Service\Router $router */
 
 ob_start(); ?>
-<div class="dropdown" role="group" aria-labelledby="zarzadzanie">
+<div class="dropdown management-dropdown" role="group" aria-labelledby="zarzadzanie">
     <button class="dropdown-toggle" type="button" id="zarzadzanie" aria-expanded="false">
         Zarządzanie
     </button>
-    <div class="dropdown-menu" aria-hidden="true">
+    <div class="dropdown-menu management-menu" aria-hidden="true">
         <button type="button" class="dropdown-item" onclick="save()">Zapisz</button>
         <button type="button" class="dropdown-item" onclick="share()">Udostępnij</button>
         <button type="button" class="dropdown-item" onclick="print()">Drukuj</button>
