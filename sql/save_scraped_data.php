@@ -1,49 +1,48 @@
 <?php
+// Dołącz plik z połączeniem z bazą danych
+include 'db.php';
 
-// Konfiguracja połączenia z bazą danych
-$dsn = 'sqlite:database.db'; // Nazwa pliku bazy danych SQLite
-try {
-    $db = new PDO($dsn);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
+// Zakładając, że dane do zapisania zostały pobrane z scraper (np. tablica z danymi)
+$data = [
+    'faculty' => [
+        ['faculty_name' => 'Computer Science'],
+        ['faculty_name' => 'Mathematics'],
+    ],
+    'lecturer' => [
+        ['lecturer_name' => 'John Doe', 'title' => 'Dr.'],
+        ['lecturer_name' => 'Jane Smith', 'title' => 'Prof.'],
+    ],
+    'subject' => [
+        ['subject_name' => 'Data Structures', 'subject_form' => 'Lecture'],
+        ['subject_name' => 'Algorithms', 'subject_form' => 'Seminar'],
+    ],
+    'room' => [
+        ['room_name' => 'Room 101', 'faculty_id' => 1],
+        ['room_name' => 'Room 102', 'faculty_id' => 2],
+    ],
+    'groups' => [
+        ['group_name' => 'Group 1'],
+        ['group_name' => 'Group 2'],
+    ]
+];
 
-// Funkcja zapisywania danych do bazy danych
-function saveData($db, $tableName, $data) {
-    try {
-        // Tworzenie dynamicznego zapytania INSERT
-        $columns = implode(", ", array_keys($data));
-        $placeholders = implode(", ", array_map(fn($key) => ":$key", array_keys($data)));
+// Funkcja zapisująca dane do bazy
+function saveData($pdo, $table, $data) {
+    $columns = implode(', ', array_keys($data[0]));
+    $placeholders = ':' . implode(', :', array_keys($data[0]));
 
-        $sql = "INSERT INTO $tableName ($columns) VALUES ($placeholders)";
-        $stmt = $db->prepare($sql);
+    $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+    $stmt = $pdo->prepare($sql);
 
-        // Przypisanie wartości do zapytania
-        foreach ($data as $key => $value) {
-            $stmt->bindValue(":$key", $value);
-        }
-
-        // Wykonanie zapytania
-        $stmt->execute();
-        echo "Data inserted into $tableName successfully.\n";
-    } catch (PDOException $e) {
-        echo "Error inserting data: " . $e->getMessage() . "\n";
+    foreach ($data as $row) {
+        $stmt->execute($row);
     }
 }
 
-// Przykładowe dane do zapisania
-$facultyData = [
-    'faculty_name' => 'Engineering'
-];
-$roomData = [
-    'room_name' => '101',
-    'faculty_id' => 1
-];
+// Zapisz dane do tabel
+foreach ($data as $table => $rows) {
+    saveData($pdo, $table, $rows);
+}
 
-// Zapisywanie danych do tabel
-saveData($db, 'faculty', $facultyData);
-saveData($db, 'room', $roomData);
-
-// Zamknij połączenie z bazą danych
-$db = null;
+echo "Data has been successfully saved!";
+?>
