@@ -149,7 +149,7 @@ class  Schedule
     public static function findAll(): array
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM schedule';
+        $sql = 'SELECT * FROM schedules';
         $statement = $pdo->prepare($sql);
         $statement->execute();
 
@@ -165,7 +165,7 @@ class  Schedule
     public static function findSchedule(int $id): ?Schedule
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM schedule WHERE id = :id';
+        $sql = 'SELECT * FROM schedules WHERE id = :id';
         $statement = $pdo->prepare($sql);
         $statement->execute(['id' => $id]);
 
@@ -182,7 +182,7 @@ class  Schedule
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
         if(! $this->getId()) {
-            $sql = 'INSERT INTO schedule (subject_id, lecturer_id, faculty_id, group_id, room_id, time_start, time_end, color) VALUES (:subject_id, :lecturer_id, :faculty_id, :group_id, :room_id, :time_start, :time_end, :color)';
+            $sql = 'INSERT INTO schedules (subject_id, lecturer_id, faculty_id, group_id, room_id, time_start, time_end, color) VALUES (:subject_id, :lecturer_id, :faculty_id, :group_id, :room_id, :time_start, :time_end, :color)';
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'subject_id' => $this->getSubjectId(),
@@ -197,7 +197,7 @@ class  Schedule
             
             $this->setId((int)$pdo->lastInsertId());
         } else {
-            $sql = 'UPDATE schedule SET subject_id = :subject_id, lecturer_id = :lecturer_id, faculty_id = :faculty_id, group_id = :group_id, room_id = :room_id, time_start = :time_start, time_end = :time_end, color = :color WHERE id = :id';
+            $sql = 'UPDATE schedules SET subject_id = :subject_id, lecturer_id = :lecturer_id, faculty_id = :faculty_id, group_id = :group_id, room_id = :room_id, time_start = :time_start, time_end = :time_end, color = :color WHERE id = :id';
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'id' => $this->getId(),
