@@ -53,6 +53,38 @@ form input {
     box-sizing: border-box;
 }
 
+form input[type="checkbox"] {
+    appearance: none; // Usunięcie domyślnego stylu checkboxa
+    width: 20px;
+    height: 20px;
+    border: 2px solid #879DDF;
+    border-radius: 50%; // Ustawienie kształtu na kółko
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    margin-right: 10px; // Odstęp między checkboxem a tekstem
+    box-sizing: border-box; // Upewnij się, że padding jest wliczany do szerokości i wysokości
+}
+
+form input[type="checkbox"]:checked {
+    background-color: #879DDF; // Kolor tła zaznaczonego checkboxa
+    border-color: #879DDF;
+}
+
+form input[type="checkbox"]:checked::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; // Ustawienie kształtu na kółko
+    background-color: #FFF; // Kolor wewnętrznego kółka
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -82,6 +114,7 @@ form input {
     position: absolute;
     background: rgba(23, 30, 49, 0.85);
     border: 1px solid #879DDF;
+    border-radius: 6px;
     width: 100%; // Dodaj to, aby menu dostosowywało swoją szerokość
     z-index: 1;
 }

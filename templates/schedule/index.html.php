@@ -18,7 +18,7 @@ ob_start(); ?>
     <h1>Plan ZUT 2025</h1>
 </header>
 <main_content>
-    <aside>
+    <aside class="aside">
         <form>
             <label for="lecturer">Wykładowca</label>
             <input type="text" id="lecturer" name="lecturer" placeholder="Podaj nazwisko">
@@ -51,25 +51,22 @@ ob_start(); ?>
     </aside>
     <section id="schedule">
          <?php include __DIR__ . '/calendar.html.php'; ?>
+         <legend class="legend">
+            <ul>
+                <li><span class="event-1"></span> Laboratorium</li>
+                <li><span class="event-2"></span> Wyklad</li>
+                <li><span class="event-3"></span> Lektorat</li>
+                <li><span class="event-4"></span> Audytoryjne</li>
+                <li><span class="event-5"></span> Projekt</li>
+                <li><span class="event-6"></span> Egzamin</li>
+                <li><span class="event-7"></span> Konsultacje</li>
+                <li><span class="event-8"></span> Seminarium</li>
+            </ul>
+        </legend>
     </section>
 </main_content>
-<legend>
-    <ul>
-        <li><span class="event-1"></span> Laboratorium</li>
-        <li><span class="event-2"></span> Wyklad</li>
-        <li><span class="event-3"></span> Lektorat</li>
-        <li><span class="event-4"></span> Audytoryjne</li>
-        <li><span class="event-5"></span> Projekt</li>
-        <li><span class="event-6"></span> Egzamin</li>
-        <li><span class="event-7"></span> Konsultacje</li>
-        <li><span class="event-8"></span> Seminarium</li>
-
-    </ul>
-</legend>
-
 </body>
 </html>
-
 
 <?php $main = ob_get_clean();
 

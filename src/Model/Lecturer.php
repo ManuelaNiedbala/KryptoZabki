@@ -17,6 +17,7 @@ class Lecturer
     public function setId(int $id): Lecturer
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getLecturerName(): ?string
@@ -27,6 +28,7 @@ class Lecturer
     public function setLecturerName(string $lecturer_name): Lecturer
     {
         $this->lecturer_name = $lecturer_name;
+        return $this;
     }
 
     public function getTitle(): ?string
@@ -37,6 +39,7 @@ class Lecturer
     public function setTitle(string $title): Lecturer
     {
         $this->title = $title;
+        return $this;
     }
 
     public static function fromArray($array): Lecturer
