@@ -6,9 +6,9 @@ use App\Service\Config;
 
 try {
     $pdo = new PDO(
-        'sqlite:d:/KryptoŻabki/KryptoZabki/data.db',
-        '',
-        '',
+        Config::get('db_dsn'),
+        Config::get('db_user'),
+        Config::get('db_pass'),
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 

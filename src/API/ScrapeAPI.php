@@ -3,6 +3,7 @@
 namespace App\API;
 
 use App\Model\Lecturer;
+use App\Service\Config;
 use PDO;
 use PDOException;
 use Exception;
@@ -13,16 +14,11 @@ class ScrapeAPI
 
     public function __construct()
     {
-        global $config;
-        if (!isset($config)) {
-            require __DIR__ . '/../../config/config.php';
-        }
-
         try {
             $this->pdo = new PDO(
-                $config['db_dsn'],
-                $config['db_user'],
-                $config['db_pass'],
+                Config::get('db_dsn'),
+                Config::get('db_user'),
+                Config::get('db_pass'),
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
         } catch (PDOException $e) {
@@ -45,7 +41,7 @@ class ScrapeAPI
                 $lecturerName = $item['item'];
                 $lecturer = new Lecturer();
                 $lecturer->setLecturerName($lecturerName);
-                $lecturer->setTitle(''); // Assuming title is not provided in the data
+                $lecturer->setTitle('');
                 $lecturer->save();
             }
         }
