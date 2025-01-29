@@ -17,6 +17,7 @@ class Room
     public function setId(int $id): Room
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getRoomName(): ?string
@@ -27,6 +28,7 @@ class Room
     public function setRoomName(string $room_name): Room
     {
         $this->room_name = $room_name;
+        return $this;
     }
 
     public function getFacultyId(): ?int
@@ -37,6 +39,7 @@ class Room
     public function setFacultyId(int $faculty_id): Room
     {
         $this->faculty_id = $faculty_id;
+        return $this;
     }
 
     public static function fromArray($array): Room

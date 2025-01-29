@@ -16,6 +16,7 @@ class Student
     public function setId(int $id): Student
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getFacultyId(): ?int
@@ -26,6 +27,7 @@ class Student
     public function setFacultyId(int $faculty_id): Student
     {
         $this->faculty_id = $faculty_id;
+        return $this;
     }
 
     public static function fromArray($array): Student
@@ -83,15 +85,15 @@ class Student
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        if (! $this->getID()) {
-            $sql = 'INSERT INTO student (faculty_id) VALUES (:faculty_id)';
+        if (! $this->getId()) {
+            $sql = 'INSERT INTO student (id, faculty_id) VALUES (:id, :faculty_id)';
             $statement = $pdo->prepare($sql);
             $statement->execute([
+                'id' => $this->getId(),
                 'faculty_id' => $this->getFacultyId()
             ]);
-            $this->setId((int) $pdo->lastInsertId());
         } else {
-            $sql = 'UPDATE student SET faculty_id = :faculty WHERE id = :id';
+            $sql = 'UPDATE student SET faculty_id = :faculty_id WHERE id = :id';
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'faculty_id' => $this->getFacultyId(),

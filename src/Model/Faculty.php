@@ -16,6 +16,7 @@ class Faculty
     public function setId(int $id): Faculty
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getFacultyName(): ?string
@@ -26,6 +27,7 @@ class Faculty
     public function setFacultyName(string $faculty_name): Faculty
     {
         $this->faculty_name = $faculty_name;
+        return $this;
     }
 
     public static function fromArray($array): Faculty

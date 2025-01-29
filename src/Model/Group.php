@@ -16,6 +16,7 @@ class Group
     public function setId(int $id): Group
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getGroupName(): ?string
@@ -26,6 +27,7 @@ class Group
     public function setGroupName(string $group_name): Group
     {
         $this->group_name = $group_name;
+        return $this;
     }
 
     public static function fromArray($array): Group
@@ -64,18 +66,18 @@ class Group
         return $groups;
     }
 
-    public static function findGroup(string $group_name): Group
+    public static function findGroup(string $group_name): ?Group
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM group WHERE group_name = :group_name';
+        $sql = 'SELECT * FROM groups WHERE group_name = :group_name';
         $statement = $pdo->prepare($sql);
         $statement->execute(['group_name' => $group_name]);
 
-        $groupArray = $statement->fetch(\PDO::FETCH_ASSOC);
-        if (! $groupArray) {
+        $search = $statement->fetch(\PDO::FETCH_ASSOC);
+        if (!$search) {
             return null;
         }
-        $group = self::fromArray($groupArray);
+        $group = self::fromArray($search);
 
         return $group;
     }
@@ -83,20 +85,20 @@ class Group
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        if (! $this->getId()) {
-            $sql = 'INSERT INTO group (group_name) VALUES (:group_name)';
+        if (!$this->getId()) {
+            $sql = 'INSERT INTO groups (group_name) VALUES (:group_name)';
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'group_name' => $this->getGroupName()
             ]);
 
-            $this->setId($pdo->lastInsertId());
+            $this->setId((int)$pdo->lastInsertId());
         } else {
-            $sql = 'UPDATE group SET group_name = :group_name WHERE id = :id';
+            $sql = 'UPDATE groups SET group_name = :group_name WHERE id = :id';
             $statement = $pdo->prepare($sql);
             $statement->execute([
-                'group_name' => $this->getGroupName(), 
-                'id' => $this->getId()
+                'id' => $this->getId(),
+                'group_name' => $this->getGroupName()
             ]);
         }
     }

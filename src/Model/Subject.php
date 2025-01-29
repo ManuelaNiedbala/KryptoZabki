@@ -17,6 +17,7 @@ class Subject
     public function setId(int $id): Subject
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getSubjectName(): ?string
@@ -27,6 +28,7 @@ class Subject
     public function setSubjectName(string $subject_name): Subject
     {
         $this->subject_name = $subject_name;
+        return $this;
     }
 
     public function getSubjectForm(): ?string
@@ -37,6 +39,7 @@ class Subject
     public function setSubjectForm(string $subject_form): Subject
     {
         $this->subject_form = $subject_form;
+        return $this;
     }
 
     public static function fromArray($array): Subject
@@ -78,42 +81,39 @@ class Subject
         return $subjects;
     }
 
-    public static function findSubject(string $subject_name, string $subject_form): ?Subject
+    public static function findSubject($subjectName, $subjectForm): ?Subject
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM subjects WHERE subject_name = :subject_name AND subject_form = :subject_form';
+        $sql = 'SELECT * FROM subject WHERE subject_name = :subject_name AND subject_form = :subject_form';
         $statement = $pdo->prepare($sql);
-        $statement->execute(['subject_name' => $subject_name, 'subject_form' => $subject_form]);
+        $statement->execute(['subject_name' => $subjectName, 'subject_form' => $subjectForm]);
 
-        $search = $stmt->fetch(\PDO::FETCH_ASSOC);
-        if (!$search) {
-            return null;
+        $data = $statement->fetch(\PDO::FETCH_ASSOC);
+        if ($data) {
+            return self::fromArray($data);
         }
-        $subject = self::fromArray($search);
-
-        return $subject;
+        return null;
     }
 
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        if (!$this->getId()) {
-            $sql = 'INSERT INTO subjects (subject_name, subject_form) VALUES (:subject_name, :subject_form)';
+        if ($this->getId()) {
+            $sql = 'UPDATE subject SET subject_name = :subject_name, subject_form = :subject_form WHERE id = :id';
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'subject_name' => $this->getSubjectName(),
-                'subject_form' => $this->getSubjectForm()
+                'subject_form' => $this->getSubjectForm(),
+                'id' => $this->getId()
             ]);
-
-            $this->setId((int)$pdo->lastInsertId());
         } else {
-            $sql = 'UPDATE subjects SET subject_name = :subject_name, subject_form = :subject_form WHERE id = :id';
+            $sql = 'INSERT INTO subject (subject_name, subject_form) VALUES (:subject_name, :subject_form)';
             $statement = $pdo->prepare($sql);
             $statement->execute([
-                'id' => $this->getId(),
                 'subject_name' => $this->getSubjectName(),
                 'subject_form' => $this->getSubjectForm()
             ]);
+            $this->setId($pdo->lastInsertId());
         }
     }
 }

@@ -111,6 +111,7 @@ class Lecturer
                 'title' => $this->getTitle()
             ]);
             $this->setId($pdo->lastInsertId());
+            echo "Dodano wykładowcę: {$this->getLecturerName()}\n";
         } else {
             $sql = 'UPDATE lecturer SET lecturer_name = :lecturer_name, title = :title WHERE id = :id';
             $statement = $pdo->prepare($sql);
@@ -119,6 +120,7 @@ class Lecturer
                 'title' => $this->getTitle(),
                 'id' => $this->getId()
             ]);
+            echo "Zaktualizowano wykładowcę: {$this->getLecturerName()}\n";
         }
     }
 }
