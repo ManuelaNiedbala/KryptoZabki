@@ -2,3 +2,94 @@ body {
   background: rgb(18, 22, 45);
   background: linear-gradient(0deg, rgba(18, 22, 45, 1) 0%, rgba(26, 38, 69, 1) 80%);
 }
+
+/* Общий стиль для контрастного режима */
+.contrast,
+.contrast * {
+  background-color: black !important;
+  color: yellow !important;
+}
+
+.high-contrast,
+.high-contrast * {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* Глобальное применение для всей страницы */
+.contrast html, .contrast body, .contrast div, .contrast section, .contrast main, .contrast header, .contrast aside {
+  background-color: black !important;
+  color: yellow !important;
+}
+
+.high-contrast html, .high-contrast body, .high-contrast div, .high-contrast section, .high-contrast main, .high-contrast header, .high-contrast aside {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* Изменяем фон у календаря */
+.contrast .fc,
+.contrast .fc-daygrid-day,
+.contrast .fc-timegrid-slot,
+.contrast .fc-toolbar-title,
+.contrast .fc-day-today {
+  background-color: black !important;
+  color: yellow !important;
+  border-color: yellow !important;
+}
+
+.high-contrast .fc,
+.high-contrast .fc-daygrid-day,
+.high-contrast .fc-timegrid-slot,
+.high-contrast .fc-toolbar-title,
+.high-contrast .fc-day-today {
+  background-color: white !important;
+  color: black !important;
+  border-color: black !important;
+}
+
+/* Меняем цвет бокового меню */
+.contrast aside {
+  background-color: black !important;
+  color: yellow !important;
+}
+
+.high-contrast aside {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* Исправляем кнопку переключения */
+.contrast #accessibility-button,
+.contrast #accessibility-dropdown {
+  background-color: black !important;
+  color: yellow !important;
+  border-color: yellow !important;
+}
+
+.high-contrast #accessibility-button,
+.high-contrast #accessibility-dropdown {
+  background-color: white !important;
+  color: black !important;
+  border-color: black !important;
+}
+
+/* Изменяем стили кнопок */
+.contrast .fc-button,
+.contrast .search-button,
+.contrast .reset-button,
+.contrast .management-button {
+  background-color: black !important;
+  color: yellow !important;
+  border: 1px solid yellow !important;
+}
+
+.high-contrast .fc-button,
+.high-contrast .search-button,
+.high-contrast .reset-button,
+.high-contrast .management-button {
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid black !important;
+}
+
