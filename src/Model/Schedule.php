@@ -85,13 +85,34 @@ class Student
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+<<<<<<< HEAD
         if (! $this->getID()) {
             $sql = 'INSERT INTO student (id, faculty_id) VALUES (:id, :faculty_id)';
+=======
+        if(! $this->getId()) {
+            $sql = 'INSERT INTO schedules (subject_id, lecturer_id, faculty_id, group_id, room_id, time_start, time_end, color) VALUES (:subject_id, :lecturer_id, :faculty_id, :group_id, :room_id, :time_start, :time_end, :color)';
+            $statement = $pdo->prepare($sql);
+            $statement->execute([
+                'subject_id' => $this->getSubjectId(),
+                'lecturer_id' => $this->getLecturerId(),
+                'faculty_id' => $this->getFacultyId(),
+                'group_id' => $this->getGroupId(),
+                'room_id' => $this->getRoomId(),
+                'time_start' => $this->getTimeStart(),
+                'time_end' => $this->getTimeEnd(),
+                'color' => $this->getColor()
+            ]);
+
+            $this->setId((int)$pdo->lastInsertId());
+        } else {
+            $sql = 'UPDATE schedules SET subject_id = :subject_id, lecturer_id = :lecturer_id, faculty_id = :faculty_id, group_id = :group_id, room_id = :room_id, time_start = :time_start, time_end = :time_end, color = :color WHERE id = :id';
+>>>>>>> 61f9b68bdda23bd8938c4013947f88d6cdba52d2
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'id' => $this->getId(),
                 'faculty_id' => $this->getFacultyId()
             ]);
+<<<<<<< HEAD
         } else {
             $sql = 'UPDATE student SET faculty_id = :faculty_id WHERE id = :id';
             $statement = $pdo->prepare($sql);
@@ -101,4 +122,8 @@ class Student
             ]);
         }    
     }    
+=======
+        }
+    }
+>>>>>>> 61f9b68bdda23bd8938c4013947f88d6cdba52d2
 }

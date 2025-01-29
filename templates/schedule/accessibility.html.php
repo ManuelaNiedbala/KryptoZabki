@@ -68,12 +68,23 @@ ob_start(); ?>
     });
 
     function setEyeOption(option) {
+        document.documentElement.classList.remove('contrast', 'high-contrast');
+
         if (option === 'contrast') {
-            document.body.style.backgroundColor = 'black';
-            document.body.style.color = 'white';
+            document.documentElement.classList.add('contrast');
+            localStorage.setItem('theme', 'contrast');
+            applyTheme('contrast');
+        } else if (option === 'high_contrast') {
+            document.documentElement.classList.add('high-contrast');
+            localStorage.setItem('theme', 'high-contrast');
+            applyTheme('high-contrast');
         } else if (option === 'reset') {
-            document.body.style.backgroundColor = '';
-            document.body.style.color = '';
+            document.documentElement.classList.remove('contrast', 'high-contrast');
+            localStorage.removeItem('theme');
+            applyTheme('default');
         }
+
+        console.log("Примененные классы:", document.documentElement.classList);
     }
+
 </script>
