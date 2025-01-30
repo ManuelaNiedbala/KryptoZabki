@@ -84,7 +84,7 @@ class Room
     public static function findRoom(string $room_name, int $faculty_id): ?Room
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM room WHERE room_name = :room_name AND faculty_id = :faculty';
+        $sql = 'SELECT * FROM room WHERE room_name = :room_name AND faculty_id = :faculty_id';
         $statement = $pdo->prepare($sql);
         $statement->execute(['room_name' => $room_name, 'faculty_id' => $faculty_id]);
 
@@ -120,4 +120,3 @@ class Room
         }
     }
 }
-

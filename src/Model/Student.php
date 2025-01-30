@@ -6,7 +6,6 @@ use App\Service\Config;
 class Student
 {
     private ?int $id = null;
-    private ?int $faculty_id = null;
 
     public function getId(): ?int
     {
@@ -16,17 +15,6 @@ class Student
     public function setId(int $id): Student
     {
         $this->id = $id;
-        return $this;
-    }
-
-    public function getFacultyId(): ?int
-    {
-        return $this->faculty_id;
-    }
-
-    public function setFacultyId(int $faculty_id): Student
-    {
-        $this->faculty_id = $faculty_id;
         return $this;
     }
 
@@ -42,9 +30,6 @@ class Student
     {
         if(isset($array['id']) && ! $this->getId()) {
             $this->setId($array['id']);
-        }
-        if(isset($array['faculty_id'])) {
-            $this->setFacultyId($array['faculty_id']);
         }
 
         return $this;
@@ -66,12 +51,12 @@ class Student
         return $students;
     }
 
-    public static function findStudent(int $faculty_id): ?Student
+    public static function findStudent(int $id): ?Student
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM student WHERE faculty_id = :faculty_id';
+        $sql = 'SELECT * FROM student WHERE id = :id';
         $statement = $pdo->prepare($sql);
-        $statement->execute(['faculty_id' => $faculty_id]);
+        $statement->execute(['id' => $id]);
 
         $studentArray = $statement->fetch(\PDO::FETCH_ASSOC);
         if (! $studentArray) {
@@ -85,20 +70,18 @@ class Student
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        if (! $this->getId()) {
-            $sql = 'INSERT INTO student (id, faculty_id) VALUES (:id, :faculty_id)';
+        if (self::findStudent($this->getId())) {
+            $sql = 'UPDATE student SET id = :id WHERE id = :id';
             $statement = $pdo->prepare($sql);
             $statement->execute([
-                'id' => $this->getId(),
-                'faculty_id' => $this->getFacultyId()
-            ]);
-        } else {
-            $sql = 'UPDATE student SET faculty_id = :faculty_id WHERE id = :id';
-            $statement = $pdo->prepare($sql);
-            $statement->execute([
-                'faculty_id' => $this->getFacultyId(),
                 'id' => $this->getId()
             ]);
-        }    
-    }    
+        } else {
+            $sql = 'INSERT INTO student (id) VALUES (:id)';
+            $statement = $pdo->prepare($sql);
+            $statement->execute([
+                'id' => $this->getId()
+            ]);
+        }
+    }
 }

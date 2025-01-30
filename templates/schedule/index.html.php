@@ -19,24 +19,24 @@ ob_start(); ?>
 </header>
 <main_content>
     <aside class="aside">
-        <form>
+        <form action="<?= $router->generatePath('main') ?>" method="get">
             <label for="lecturer">Wykładowca</label>
-            <input type="text" id="lecturer" name="lecturer" placeholder="Podaj nazwisko">
+            <input type="text" id="lecturer" name="lecturer" placeholder="Podaj nazwisko" value="<?= htmlspecialchars($_GET['lecturer'] ?? '') ?>">
 
             <label for="studentID">Numer albumu</label>
-            <input type="text" id="studentID" name="studentID" placeholder="Podaj numer albumu">
+            <input type="text" id="studentID" name="studentID" placeholder="Podaj numer albumu" value="<?= htmlspecialchars($_GET['studentID'] ?? '') ?>">
 
             <label for="subject">Przedmiot</label>
-            <input type="text" id="subject" name="subject" placeholder="Podaj przedmiot">
+            <input type="text" id="subject" name="subject" placeholder="Podaj przedmiot" value="<?= htmlspecialchars($_GET['subject'] ?? '') ?>">
 
             <label for="group">Grupa</label>
-            <input type="text" id="group" name="group" placeholder="Podaj grupę">
+            <input type="text" id="group" name="group" placeholder="Podaj grupę" value="<?= htmlspecialchars($_GET['group'] ?? '') ?>">
 
             <label for="wydzial">Wydział</label>
-            <input type="text" id="faculty" name="faculty" placeholder="Podaj wydział">
+            <input type="text" id="faculty" name="faculty" placeholder="Podaj wydział" value="<?= htmlspecialchars($_GET['faculty'] ?? '') ?>">
 
             <label for="room">Sala</label>
-            <input type="text" id="room" name="room" placeholder="Podaj salę">
+            <input type="text" id="room" name="room" placeholder="Podaj salę" value="<?= htmlspecialchars($_GET['room'] ?? '') ?>">
 
             <label for="class_type">Forma zajęć</label>
             <?php include __DIR__ . '/class_type.html.php'; ?>

@@ -12,56 +12,20 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
-    // Check data in lecturer table
-    $statement = $pdo->query('SELECT * FROM lecturer');
-    $lecturers = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $tables = ['lecturer', 'faculty', 'subject', 'groups', 'group_student', 'student', 'room', 'schedules'];
 
-    if ($lecturers) {
-        echo "Dane w tabeli 'lecturer':\n";
-        foreach ($lecturers as $lecturer) {
-            echo "ID: {$lecturer['id']}, Name: {$lecturer['lecturer_name']}, Title: {$lecturer['title']}\n";
+    foreach ($tables as $table) {
+        $statement = $pdo->query("SELECT * FROM $table LIMIT 10");
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($rows) {
+            echo "Dane w tabeli '$table':\n";
+            foreach ($rows as $row) {
+                echo json_encode($row, JSON_PRETTY_PRINT) . "\n";
+            }
+        } else {
+            echo "Tabela '$table' jest pusta.\n";
         }
-    } else {
-        echo "Tabela 'lecturer' jest pusta.\n";
-    }
-
-    // Check data in faculty table
-    $statement = $pdo->query('SELECT * FROM faculty');
-    $faculties = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($faculties) {
-        echo "Dane w tabeli 'faculty':\n";
-        foreach ($faculties as $faculty) {
-            echo "ID: {$faculty['id']}, Name: {$faculty['faculty_name']}\n";
-        }
-    } else {
-        echo "Tabela 'faculty' jest pusta.\n";
-    }
-
-    // Check data in subject table
-    $statement = $pdo->query('SELECT * FROM subject');
-    $subjects = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($subjects) {
-        echo "Dane w tabeli 'subject':\n";
-        foreach ($subjects as $subject) {
-            echo "ID: {$subject['id']}, Name: {$subject['subject_name']}, Form: {$subject['subject_form']}\n";
-        }
-    } else {
-        echo "Tabela 'subject' jest pusta.\n";
-    }
-
-    //Check data in group table
-    $statement = $pdo->query('SELECT * FROM groups');
-    $groups = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($groups) {
-        echo "Dane w tabeli 'groups':\n";
-        foreach ($groups as $group) {
-            echo "ID: {$group['id']}, Name: {$group['group_name']}\n";
-        }
-    } else {
-        echo "Tabela 'groups' jest pusta.\n";
     }
 
 } catch (PDOException $e) {

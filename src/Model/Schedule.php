@@ -23,6 +23,7 @@ class  Schedule
     public function setId(int $id): Schedule
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getSubjectId(): ?int
@@ -33,6 +34,7 @@ class  Schedule
     public function setSubjectId(int $subject_id): Schedule
     {
         $this->subject_id = $subject_id;
+        return $this;
     }
 
     public function getLecturerId(): ?int
@@ -43,6 +45,7 @@ class  Schedule
     public function setLecturerId(int $lecturer_id): Schedule
     {
         $this->lecturer_id = $lecturer_id;
+        return $this;
     }
 
     public function getFacultyId(): ?int
@@ -53,6 +56,7 @@ class  Schedule
     public function setFacultyId(int $faculty_id): Schedule
     {
         $this->faculty_id = $faculty_id;
+        return $this;
     }
 
     public function getGroupId(): ?int
@@ -63,6 +67,7 @@ class  Schedule
     public function setGroupId(int $group_id): Schedule
     {
         $this->group_id = $group_id;
+        return $this;
     }
 
     public function getRoomId(): ?int
@@ -73,6 +78,7 @@ class  Schedule
     public function setRoomId(int $room_id): Schedule
     {
         $this->room_id = $room_id;
+        return $this;
     }
 
     public function getTimeStart(): ?string
@@ -83,6 +89,7 @@ class  Schedule
     public function setTimeStart(string $time_start): Schedule
     {
         $this->time_start = $time_start;
+        return $this;
     }
 
     public function getTimeEnd(): ?string
@@ -93,6 +100,7 @@ class  Schedule
     public function setTimeEnd(string $time_end): Schedule
     {
         $this->time_end = $time_end;
+        return $this;
     }
 
     public function getColor(): ?string
@@ -103,6 +111,7 @@ class  Schedule
     public function setColor(string $color): Schedule
     {
         $this->color = $color;
+        return $this;
     }
 
     public static function fromArray($array): Schedule
@@ -178,6 +187,61 @@ class  Schedule
         return $schedule;
     }
 
+    public static function findSubjectId($subjectName, $subjectForm): ?int
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT id FROM subject WHERE subject_name = :subject_name AND subject_form = :subject_form';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['subject_name' => $subjectName, 'subject_form' => $subjectForm]);
+
+        $data = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $data ? (int)$data['id'] : null;
+    }
+
+    public static function findLecturerId($lecturerName): ?int
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT id FROM lecturer WHERE lecturer_name = :lecturer_name';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['lecturer_name' => $lecturerName]);
+
+        $data = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $data ? (int)$data['id'] : null;
+    }
+
+    public static function findFacultyId($facultyName): ?int
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT id FROM faculty WHERE faculty_name = :faculty_name';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['faculty_name' => $facultyName]);
+
+        $data = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $data ? (int)$data['id'] : null;
+    }
+
+    public static function findRoomId($roomName, $facultyId): ?int
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT id FROM room WHERE room_name = :room_name AND faculty_id = :faculty_id';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['room_name' => $roomName, 'faculty_id' => $facultyId]);
+
+        $data = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $data ? (int)$data['id'] : null;
+    }
+
+    public static function findGroupId($groupName): ?int
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT id FROM groups WHERE group_name = :group_name';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['group_name' => $groupName]);
+
+        $data = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $data ? (int)$data['id'] : null;
+    }
+
     public function save(): Schedule
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
@@ -211,5 +275,6 @@ class  Schedule
                 'color' => $this->getColor()
             ]);
         }
+        return $this;
     }
 }

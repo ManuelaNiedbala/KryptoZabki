@@ -16,6 +16,7 @@ class GroupStudent
     public function setGroupId(int $group_id): GroupStudent
     {
         $this->group_id = $group_id;
+        return $this;
     }
 
     public function getStudentId(): ?int
@@ -26,6 +27,7 @@ class GroupStudent
     public function setStudentId(int $student_id): GroupStudent
     {
         $this->student_id = $student_id;
+        return $this;
     }
 
     public static function fromArray($array): GroupStudent
@@ -83,20 +85,11 @@ class GroupStudent
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        if(! $this->getGroupId() || ! $this->getStudentId()) {
-            $sql = 'INSERT INTO group_student (group_id, student_id) VALUES (:group_id, :student_id)';
-            $statement = $pdo->prepare($sql);
-            $statement->execute([
-                'group_id' => $this->getGroupId(), 
-                'student_id' => $this->getStudentId()
-            ]);
-        } else {
-            $sql = 'UPDATE group_student SET group_id = :group_id, student_id = :student_id WHERE group_id = :group_id AND student_id = :student_id';
-            $statement = $pdo->prepare($sql);
-            $statement->execute([
-                'group_id' => $this->getGroupId(), 
-                'student_id' => $this->getStudentId()
-            ]);
-        }
+        $sql = 'INSERT INTO group_student (group_id, student_id) VALUES (:group_id, :student_id)';
+        $statement = $pdo->prepare($sql);
+        $statement->execute([
+            'group_id' => $this->getGroupId(), 
+            'student_id' => $this->getStudentId()
+        ]);
     }
 }
